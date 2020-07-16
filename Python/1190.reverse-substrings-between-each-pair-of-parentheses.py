@@ -32,6 +32,7 @@ class Solution(object):
                 s = s[:start] + substr[::-1] + s[end:]
         return s.replace('(', '').replace(')', '')
 
+
     def reverseParentheses_first(self, nums1: List[int], nums2: List[int]) -> List[int]:
         """
         :type s: str
@@ -58,4 +59,19 @@ class Solution(object):
                 lst.append(arr[i][::-1])
 
         return "".join(lst)
-        pass
+
+
+    def reverseParentheses(self, s: str) -> str:
+        """
+        : 栈的最佳答案 https://leetcode-cn.com/problems/reverse-substrings-between-each-pair-of-parentheses/solution/1190-fan-zhuan-mei-dui-gua-hao-jian-de-zi-chuan-ji/
+        """
+        ans = ['']
+        for c in s:
+            if c == '(':
+                ans += ['']
+            elif c == ')':
+                ans[-2] += ans[-1][:: -1]
+                ans.pop()
+            else:
+                ans[-1] += c
+        return ans[0]
