@@ -10,9 +10,7 @@ FROM scores AS s INNER JOIN (
 ORDER BY s.Score DESC
 
 -- 其他人的解法，貌似比上面的慢
-
 SELECT
     a.Score as score , 
     (SELECT COUNT(DISTINCT b.Score) FROM Scores b where b.Score >=a.Score) AS `rank`
 FROM Scores a ORDER BY Score DESC
-
